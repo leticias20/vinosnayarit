@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,13 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vinosnayarit.model.Vino;
 import com.vinosnayarit.repository.VinoRepository;
 
+@CrossOrigin()
 @RestController
 @RequestMapping("/api")
 public class VinoController {
 	
 	@Autowired
 	VinoRepository vinoRepository;
-	
+	 
 	 @GetMapping("/vinos")
 	  public ResponseEntity<List<Vino>> getAllVinos() {
 	    try {
@@ -39,7 +41,6 @@ public class VinoController {
 	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	  }
-	 
 	 
 	 @PostMapping("/vinos")
 	  public ResponseEntity<Vino> createTutorial(@RequestBody Vino vino) {
